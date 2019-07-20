@@ -1,0 +1,20 @@
+{
+  "main": "src/login.cpp",
+  "contract": "login",
+  "include": "",
+  "cdt": "",
+  "output": "",
+  "scripts": {
+    "build": ""
+  },
+  "deploy": {
+    "target": "both",
+    "mainnet": "",
+    "kylin": "",
+    "jungle": "",
+    "local": "127.0.0.1"
+  },
+  "test": {
+    "npmClient": "npm"
+  }
+}
