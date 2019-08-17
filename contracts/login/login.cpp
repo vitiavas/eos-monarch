@@ -9,6 +9,7 @@ class [[eosio::contract("login")]] login : public eosio::contract {
     struct [[eosio::table]] user_info {
       name            user;
       std::string username;
+      std::string uid;
 
       auto primary_key() const { return user.value; }
     };
@@ -38,25 +39,19 @@ class [[eosio::contract("login")]] login : public eosio::contract {
         } 
     }
     
+    
     [[eosio::action]]
-    void upsert(name user, std::string username) {
+    void upsert(name user, std::string username, std::string uid) {
       // require_auth( user );
       users_table users(get_self(), get_first_receiver().value);
       auto iterator = users.find(user.value);
-      if( iterator == users.end() ) {
-        //The user isn't in the table
-        users.emplace(user, [&]( auto& row ) {
-          row.user = user;
-          row.username = username;
-        });
-      }
-      else {
-        //The user is in the table
-        users.modify(iterator, user, [&]( auto& row ) {
-          row.user = user;
-          row.username = username;
-        });
-      }
+      eosio::check( iterator == users.end(), "Utilizador já existe!");
+      //The user isn't in the table
+      users.emplace(user, [&]( auto& row ) {
+        row.user = user;
+        row.username = username;
+        row.uid = uid;
+      });
     }
 
     [[eosio::action]]

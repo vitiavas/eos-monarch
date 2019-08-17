@@ -1,0 +1,9 @@
+rm -f contracts/login/*.wasm
+rm -f contracts/login/*.wast
+rm -f contracts/login/*.abi
+rm -f contracts/rfidscanner/*.wasm
+rm -f contracts/rfidscanner/*.wast
+rm -f contracts/rfidscanner/*.abi
+rm -f contracts/storage/*.wasm
+rm -f contracts/storage/*.wast
+rm -f contracts/storage/*.abi
