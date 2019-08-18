@@ -1,3 +1,3 @@
-eosio-cpp contracts/login/login.cpp -o contracts/login/login.wasm --abigen --contract=login
-eosio-cpp contracts/rfidscanner/rfidscanner.cpp -o contracts/rfidscanner/rfidscanner.wasm --abigen --contract=rfidscanner
-eosio-cpp contracts/storage/storage.cpp -o contracts/storage/storage.wasm --abigen --contract=storage
+eosio-cpp src/login/login.cpp -o build/login/login.wasm --abigen --contract=login
+eosio-cpp src/rfidscanner/rfidscanner.cpp -o build/rfidscanner/rfidscanner.wasm --abigen --contract=rfidscanner
+eosio-cpp src/storage/storage.cpp -o build/storage/storage.wasm --abigen --contract=storage
