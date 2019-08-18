@@ -8,7 +8,14 @@
         "unordered_set": "cpp",
         "vector": "cpp",
         "string_view": "cpp",
-        "initializer_list": "cpp"
+        "initializer_list": "cpp",
+        "istream": "cpp",
+        "optional": "cpp",
+        "ostream": "cpp",
+        "ratio": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp",
+        "variant": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libabi_generator.a  CMakeFiles/abi_generator.dir/abi_generator.cpp.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib libabi_generator.a

@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "eoside_native",
+            "type": "cppdbg",
+            "request": "launch",
+            "stopAtEntry": true,
+            "environment": [],
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "/usr/bin/gdb",
+            "miDebuggerArgs": "-quiet",
+            "args": [],
+            "cwd": "/home/lfalves/developer/projects/eos-monarch/build",
+            "externalConsole": false
+        }
+    ]
+}

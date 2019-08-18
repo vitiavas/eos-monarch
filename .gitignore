@@ -18,3 +18,9 @@ frontend/build
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.vscode/ipch/*
+.vscode/settings.json
+.vscode/tasks.json
+build/*
+command_lines.txt
