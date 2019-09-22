@@ -63,6 +63,14 @@ class [[eosio::contract("login")]] login : public eosio::contract {
       users.erase(iterator);
     }
 
+
+
+    
+
+
+
+
+
 };
 
 EOSIO_DISPATCH(login, (authenticate)(upsert)(erase))

@@ -8,12 +8,12 @@ class [[eosio::contract("rfidscanner")]] rfidscanner : public eosio::contract {
 
     struct [[eosio::table]] rfid_event {
       name            user;
-      std::string id;
+      uint64_t id;
       std::string uid;
       std::string start_date;
       std::string end_date;
 
-      auto primary_key() const { return user.value; }
+      auto primary_key() const { return id; }
     };
     
 
@@ -39,7 +39,7 @@ class [[eosio::contract("rfidscanner")]] rfidscanner : public eosio::contract {
         // eosio::check( iterator == rfids.end(), "Rfid Repetido!");
         rfids.emplace(user, [&](auto &new_rfid) {
             new_rfid.user = user;
-            new_rfid.id = id;
+            new_rfid.id = rfids.available_primary_key();;
             new_rfid.uid = uid;
             new_rfid.start_date = start_date;
             new_rfid.end_date = end_date;
