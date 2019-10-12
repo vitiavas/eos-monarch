@@ -29,7 +29,6 @@ class [[eosio::contract("login")]] login : public eosio::contract {
     void authenticate(name user) {
         // Ensure this action is authorized by the player
         require_auth(user);
-        
         // Create a record in the table if the player doesn't exist in our app yet
         auto user_iterator = _users.find(user.value);
         if (user_iterator == _users.end()) {
@@ -38,17 +37,18 @@ class [[eosio::contract("login")]] login : public eosio::contract {
           });
         } 
     }
-    
+
+    [[eosio::action]]
+    void prove(std::string signing) { }
     
     [[eosio::action]]
     void upsert(name user, std::string username, std::string uid) {
-      // require_auth( user );
+      require_auth( user );
       users_table users(get_self(), get_first_receiver().value);
       auto iterator = users.find(user.value);
       eosio::check( iterator == users.end(), "Utilizador já existe!");
       //The user isn't in the table
       users.emplace(user, [&]( auto& row ) {
-        row.user = user;
         row.username = username;
         row.uid = uid;
       });
@@ -63,14 +63,6 @@ class [[eosio::contract("login")]] login : public eosio::contract {
       users.erase(iterator);
     }
 
-
-
-    
-
-
-
-
-
 };
 
-EOSIO_DISPATCH(login, (authenticate)(upsert)(erase))
+EOSIO_DISPATCH(login, (authenticate)(upsert)(erase)(prove))

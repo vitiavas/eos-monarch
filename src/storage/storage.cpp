@@ -40,7 +40,7 @@ class [[eosio::contract("storage")]] storage : public eosio::contract {
     }
 
     [[eosio::action]]
-    void insert(name user, std::string hash, std::string uid, std::string file) {
+    void insert(name user, std::string hash, std::string uid) {
         // Ensure this action is authorized by the user
         require_auth(user);
         // get_self -> name of this contract
