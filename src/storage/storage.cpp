@@ -10,13 +10,15 @@ class [[eosio::contract("storage")]] storage : public eosio::contract {
 
     struct [[eosio::table]] records_info {
       uint64_t id;
-      std::string uid;
-      std::string hash;
+      checksum256 hash_uid;
+      checksum256 hash;
+      uint32_t stamp_secs;
+      uint32_t stamp_nsecs; 
       checksum256 txid;
       auto primary_key() const { return id; }
 
       // Fix the table. May need to drop all blockchain and start a new one later because of primary key uniqueness and serialization is broken
-      EOSLIB_SERIALIZE( records_info, (id)(uid)(hash)(txid))
+      EOSLIB_SERIALIZE( records_info, (id)(hash_uid)(hash)(stamp_secs)(stamp_nsecs)(txid))
 
     };
     
@@ -40,16 +42,17 @@ class [[eosio::contract("storage")]] storage : public eosio::contract {
     }
 
     [[eosio::action]]
-    void insert(name user, std::string hash, std::string uid) {
+    void insert(name user, checksum256 hash, checksum256 hash_uid, uint32_t stamp_secs, uint32_t stamp_nsecs) {
         // Ensure this action is authorized by the user
         require_auth(user);
         // get_self -> name of this contract
         // get_first_receiver -> scope (Since we have only 1 table. get_first_receiver ensures that only 1 will be taken)
-        // records records(get_self(), get_first_receiver().value);
         // // Create a record in the table
         _records.emplace(user, [&](auto &new_record) {
             new_record.hash = hash;
-            new_record.uid = uid;
+            new_record.hash_uid = hash_uid;
+            new_record.stamp_secs = stamp_secs;
+            new_record.stamp_nsecs = stamp_nsecs;
             new_record.txid = get_trx_id();
             new_record.id = _records.available_primary_key();
         });
@@ -65,12 +68,14 @@ class [[eosio::contract("storage")]] storage : public eosio::contract {
     }
 
     [[eosio::action]]
-    void erase(name user, uint64_t id) {
+    void erase(name user, uint32_t minTime, uint32_t maxTime, checksum256 hash_rfid) {
       require_auth(user);
-      // records records(get_self(), get_first_receiver().value);
-      auto iterator = _records.find(id);
-      check(iterator != _records.end(), "Record does not exist");
-      _records.erase(iterator);
+      records records(get_self(), get_first_receiver().value);
+      for(auto itr = records.begin(); itr != records.end();) {
+        if(itr->stamp_secs >= minTime && itr->stamp_secs <= maxTime && itr->hash_uid == hash_rfid) {
+          itr = records.erase(itr);
+        }
+      }
     }
 
 };

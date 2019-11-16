@@ -1,8 +1,7 @@
 cleos wallet open
-cleos wallet unlock --password PW5K7e8EgKRuX8aY4rr6e6SicrY6ECbT86sMDzB1X9BGyCR1xwKnZ
+cleos wallet unlock --password PW5KSADwS62Bv263obof9SWmRBzAsdtYRSnDBb6GkGVH82v9MoTXL
 
 cleos set contract login build/login -p login@active
-cleos set contract rfidscanner build/rfidscanner -p rfidscanner@active
 cleos set contract storage build/storage -p storage@active
 
 cleos wallet lock

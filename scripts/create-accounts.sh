@@ -6,26 +6,24 @@
 # After that initial setting, vasylkovskyi votes in producernod and makes him a producer.
 # at the end, 3 smart contracts are deployed to 3 accounts and the network is ready.
 
-cleos wallet open 5JXGjFtXTHzyoPjTRfeSAukV9NQWrcA2EaobnraGstwm541RQxh
-cleos wallet unlock --password PW5K7e8EgKRuX8aY4rr6e6SicrY6ECbT86sMDzB1X9BGyCR1xwKnZ
+cleos wallet open PW5KSADwS62Bv263obof9SWmRBzAsdtYRSnDBb6GkGVH82v9MoTXL
+cleos wallet unlock --password PW5KSADwS62Bv263obof9SWmRBzAsdtYRSnDBb6GkGVH82v9MoTXL
 
-cleos system newaccount eosio --transfer login EOS8VYDzQq9nNG3VvjUPJm3omoxGAr72udS4Hxv65pqdLRChZCVS4 --stake-net "10000000.0000 SYS" --stake-cpu "10000000.0000 SYS" --buy-ram-kbytes 8192
-cleos system newaccount eosio --transfer rfidscanner EOS5Y8r9j1NV9YtmZLs9p25e3Dy7MPchacBUuoLavNVKycbxwisky --stake-net "10000000.0000 SYS" --stake-cpu "10000000.0000 SYS" --buy-ram-kbytes 8192
-cleos system newaccount eosio --transfer storage EOS8AU947D49kaUHmE2FQQuvQWSAR9WZMkPD7frYf1i3Rpu111doM --stake-net "10000000.0000 SYS" --stake-cpu "10000000.0000 SYS" --buy-ram-kbytes 8192
-cleos system newaccount eosio --transfer vasylkovskyi EOS8X35LpTuJAXhYQzHtDroRLqp7RbD55BxGyoXcBJsSzpwRbL5Hx --stake-net "10000000.0000 SYS" --stake-cpu "10000000.0000 SYS" --buy-ram-kbytes 8192
+# cleos system newaccount eosio --transfer login EOS8MnvSN5TgTuP7CMzz4FzMqB1YpUZ7ags2223pbjgGeMG8UMu7Y --stake-net "10000000.0000 SYS" --stake-cpu "10000000.0000 SYS" --buy-ram-kbytes 8192
+# cleos system newaccount eosio --transfer storage EOS6cdeSjUjSdcJcrf6sZcThD6C3nPiQQ3B7bu4Bur46bmUfhyXyT --stake-net "10000000.0000 SYS" --stake-cpu "10000000.0000 SYS" --buy-ram-kbytes 8192
+# cleos system newaccount eosio --transfer vasylkovskyi EOS5yieqx6d8jZ3EkZGLu1W25cB6dwhhaCxLjYC2NYhH9fJnw7F4h --stake-net "10000000.0000 SYS" --stake-cpu "10000000.0000 SYS" --buy-ram-kbytes 8192
+# cleos system newaccount eosio --transfer producernode EOS53U5EMqjMmqMR1B1Nzs9bD7fnPNttakEunHY5YbGboxxuCh4Es --stake-net "150000000.0000 SYS" --stake-cpu "150000000.0000 SYS" --buy-ram-kbytes 8192
 
-cleos system newaccount eosio --transfer producernode EOS77ae91RGsSTCezvdqGXbi9zc1mzNKY8F1GsQUg5YiDEyxtVc5J --stake-net "150000000.0000 SYS" --stake-cpu "150000000.0000 SYS" --buy-ram-kbytes 8192
+# cleos system regproducer producernode EOS53U5EMqjMmqMR1B1Nzs9bD7fnPNttakEunHY5YbGboxxuCh4Es EOS53U5EMqjMmqMR1B1Nzs9bD7fnPNttakEunHY5YbGboxxuCh4Es
+# cleos system regproducer vasylkovskyi EOS5yieqx6d8jZ3EkZGLu1W25cB6dwhhaCxLjYC2NYhH9fJnw7F4h  EOS5yieqx6d8jZ3EkZGLu1W25cB6dwhhaCxLjYC2NYhH9fJnw7F4h
 
-cleos system regproducer producernode EOS77ae91RGsSTCezvdqGXbi9zc1mzNKY8F1GsQUg5YiDEyxtVc5J EOS77ae91RGsSTCezvdqGXbi9zc1mzNKY8F1GsQUg5YiDEyxtVc5J
-cleos system regproducer vasylkovskyi EOS8X35LpTuJAXhYQzHtDroRLqp7RbD55BxGyoXcBJsSzpwRbL5Hx  EOS8X35LpTuJAXhYQzHtDroRLqp7RbD55BxGyoXcBJsSzpwRbL5Hx
-
-cleos system voteproducer prods vasylkovskyi producernode
+# cleos system voteproducer prods vasylkovskyi producernode
 
 
-# cleos create account eosio login EOS8VYDzQq9nNG3VvjUPJm3omoxGAr72udS4Hxv65pqdLRChZCVS4 -p eosio@active
-# cleos create account eosio rfidscanner EOS5Y8r9j1NV9YtmZLs9p25e3Dy7MPchacBUuoLavNVKycbxwisky -p eosio@active
-# cleos create account eosio storage EOS8AU947D49kaUHmE2FQQuvQWSAR9WZMkPD7frYf1i3Rpu111doM -p eosio@active
-# cleos create account eosio vasylkovskyi EOS8X35LpTuJAXhYQzHtDroRLqp7RbD55BxGyoXcBJsSzpwRbL5Hx -p eosio@active
+cleos create account eosio login EOS8MnvSN5TgTuP7CMzz4FzMqB1YpUZ7ags2223pbjgGeMG8UMu7Y -p eosio@active
+cleos create account eosio storage EOS6cdeSjUjSdcJcrf6sZcThD6C3nPiQQ3B7bu4Bur46bmUfhyXyT -p eosio@active
+cleos create account eosio vasylkovskyi EOS5yieqx6d8jZ3EkZGLu1W25cB6dwhhaCxLjYC2NYhH9fJnw7F4h -p eosio@active
+cleos create account eosio producernode EOS53U5EMqjMmqMR1B1Nzs9bD7fnPNttakEunHY5YbGboxxuCh4Es -p eosio@active
 
 
 # Makes producernode an idle producer.
